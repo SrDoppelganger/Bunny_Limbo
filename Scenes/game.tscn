@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://vqfnbhsqi06x"]
+
+[ext_resource type="PackedScene" uid="uid://cv1scjrs6mk42" path="res://Scenes/tilemap.tscn" id="1_12nk3"]
+[ext_resource type="PackedScene" uid="uid://dxhvbyl3qhryq" path="res://Scenes/player.tscn" id="1_gx7oc"]
+[ext_resource type="PackedScene" uid="uid://wdmb650s6yld" path="res://Scenes/killzone.tscn" id="3_rhaml"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b05ni"]
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_12nk3")]
+layer_0/tile_data = PackedInt32Array(262138, 0, 1, 262140, 65536, 1, 262141, 65536, 1, 262142, 65536, 1, 262143, 65536, 1, 196608, 65536, 1, 196609, 65536, 1, 196610, 65536, 1, 196611, 65536, 1, 196612, 65536, 1, 196613, 65536, 1, 196614, 65536, 1, 196615, 65536, 1, 196616, 65536, 1, 196617, 65536, 1, 196618, 65536, 1, 196619, 65536, 1, 196620, 65536, 1, 196622, 131072, 1, 327694, 65536, 0, 327693, 65536, 0, 327692, 65536, 0, 327691, 65536, 0, 327690, 65536, 0, 327689, 65536, 0, 327688, 65536, 0, 327687, 65536, 0, 327686, 65536, 0, 327685, 65536, 0, 327683, 65536, 0, 327682, 65536, 0, 327681, 65536, 0, 327680, 65536, 0, 393215, 65536, 0, 393214, 65536, 0, 393213, 65536, 0, 393212, 65536, 0, 393211, 65536, 0, 393210, 65536, 0, 524282, 65536, 0, 524283, 65536, 0, 524284, 65536, 0, 524285, 65536, 0, 524286, 65536, 0, 524287, 65536, 0, 458752, 65536, 0, 458753, 65536, 0, 458754, 65536, 0, 458755, 65536, 0, 458756, 65536, 0, 458757, 65536, 0, 458758, 65536, 0, 458759, 65536, 0, 458760, 65536, 0, 458761, 65536, 0, 458762, 65536, 0, 458763, 65536, 0, 458764, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 196626, 0, 0, 196632, 0, 0, 196640, 0, 0, 196650, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_gx7oc")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -8)
+scale = Vector2(0.469275, 0.355501)
+zoom = Vector2(4, 4)
+limit_bottom = 142
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Killzone" parent="." instance=ExtResource("3_rhaml")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(249, 161)
+shape = SubResource("WorldBoundaryShape2D_b05ni")
