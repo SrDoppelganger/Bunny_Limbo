@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg8pqnbjjv2jo"]
+
+[ext_resource type="Texture2D" uid="uid://ugalt7u1x7ut" path="res://Assets/sprites/Carrot.png" id="1_6cf5c"]
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_f24gc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b88x"]
+atlas = ExtResource("1_6cf5c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjspt"]
+atlas = ExtResource("1_6cf5c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmb8c"]
+atlas = ExtResource("1_6cf5c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_matjm"]
+atlas = ExtResource("1_6cf5c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p2duf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b88x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjspt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmb8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_matjm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4ix2"]
+radius = 6.08276
+
+[node name="pickup" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_f24gc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p2duf")
+autoplay = "default"
+frame_progress = 0.230445
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w4ix2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

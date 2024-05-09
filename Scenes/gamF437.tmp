@@ -1,17 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://vqfnbhsqi06x"]
+[gd_scene load_steps=7 format=3 uid="uid://vqfnbhsqi06x"]
 
 [ext_resource type="PackedScene" uid="uid://cv1scjrs6mk42" path="res://Scenes/tilemap.tscn" id="1_12nk3"]
 [ext_resource type="PackedScene" uid="uid://dxhvbyl3qhryq" path="res://Scenes/player.tscn" id="1_gx7oc"]
 [ext_resource type="PackedScene" uid="uid://6vwu2h3x4po8" path="res://Scenes/game_manager.tscn" id="1_ryaa6"]
-[ext_resource type="PackedScene" uid="uid://bqdjdbbuay1dt" path="res://Scenes/hud.tscn" id="2_poarv"]
 [ext_resource type="PackedScene" uid="uid://wdmb650s6yld" path="res://Scenes/killzone.tscn" id="3_rhaml"]
 [ext_resource type="PackedScene" uid="uid://dg8pqnbjjv2jo" path="res://Scenes/pickup.tscn" id="5_qjry2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oowjs"]
 
 [node name="Game" type="Node2D"]
-
-[node name="HUD" parent="." instance=ExtResource("2_poarv")]
 
 [node name="Game_Manager" parent="." instance=ExtResource("1_ryaa6")]
 unique_name_in_owner = true

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqdjdbbuay1dt"]
+
+[ext_resource type="FontFile" uid="uid://dw4t8ftxbovhu" path="res://Assets/fonts/PixelOperator8.ttf" id="1_8w54w"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score_label" type="Label" parent="GUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.008
+anchor_bottom = 0.049
+offset_top = -0.184
+offset_right = 51.0
+offset_bottom = -3.752
+theme_override_fonts/font = ExtResource("1_8w54w")
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
