@@ -39,4 +39,4 @@ shape = SubResource("WorldBoundaryShape2D_oowjs")
 [node name="Pickups" type="Node" parent="."]
 
 [node name="pickup" parent="Pickups" instance=ExtResource("5_qjry2")]
-position = Vector2(281, 10)
+position = Vector2(281, 9)

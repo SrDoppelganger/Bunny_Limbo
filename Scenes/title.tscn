@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bls13mhmd3e5c"]
+
+[ext_resource type="FontFile" uid="uid://dw4t8ftxbovhu" path="res://Assets/fonts/PixelOperator8.ttf" id="1_jl0gg"]
+[ext_resource type="Script" path="res://Scripts/title.gd" id="1_x65c2"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_x65c2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 653.0
+
+[node name="yippie" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 354.0
+offset_top = 219.0
+offset_right = -354.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_jl0gg")
+theme_override_font_sizes/font_size = 64
+text = "Bunny Limbo"
+
+[node name="press any key" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = -11.5
+offset_right = 139.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_jl0gg")
+theme_override_font_sizes/font_size = 16
+text = "Press any key to start"
+
+[node name="esc to quit" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 212.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_jl0gg")
+theme_override_font_sizes/font_size = 16
+text = "press esc to quit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 328)
