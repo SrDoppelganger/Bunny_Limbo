@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dl1enw044uhi6"
+path="res://.godot/imported/bunny limbo v1.mp3-24efa8f4d5734ff5cfce9879fef35d24.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/bunny limbo v1.mp3"
+dest_files=["res://.godot/imported/bunny limbo v1.mp3-24efa8f4d5734ff5cfce9879fef35d24.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.001
+bpm=0.0
+beat_count=0
+bar_beats=4

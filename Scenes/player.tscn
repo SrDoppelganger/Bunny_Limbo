@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxhvbyl3qhryq"]
+[gd_scene load_steps=13 format=3 uid="uid://dxhvbyl3qhryq"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bw7t3"]
+[ext_resource type="Script" path="res://Scripts/Jump script.gd" id="2_ngtm5"]
 [ext_resource type="Texture2D" uid="uid://cpfnqgtkld4qe" path="res://Assets/sprites/Bnny_v2.png" id="2_xtkec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3k7yc"]
@@ -26,6 +27,10 @@ region = Rect2(16, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tq88"]
 atlas = ExtResource("2_xtkec")
 region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u4jk"]
+atlas = ExtResource("2_xtkec")
+region = Rect2(32, 18, 16, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_62eyj"]
 animations = [{
@@ -61,6 +66,14 @@ animations = [{
 "loop": true,
 "name": &"jump_Start",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u4jk")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 1.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_66uvc"]
@@ -70,10 +83,23 @@ radius = 4.0
 collision_layer = 2
 script = ExtResource("1_bw7t3")
 
+[node name="Jump script" type="Node" parent="."]
+script = ExtResource("2_ngtm5")
+jump_h = 80.0
+jump_peak = 0.4
+jump_d = 0.5
+
+[node name="timers" type="Node" parent="."]
+
+[node name="Coyote_timer" type="Timer" parent="timers"]
+wait_time = 0.1
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_62eyj")
-animation = &"idle"
+animation = &"slide"
 autoplay = "idle"
+frame_progress = 0.171675
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
