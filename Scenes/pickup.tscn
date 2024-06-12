@@ -1,42 +1,42 @@
 [gd_scene load_steps=9 format=3 uid="uid://dg8pqnbjjv2jo"]
 
-[ext_resource type="Texture2D" uid="uid://ugalt7u1x7ut" path="res://Assets/sprites/Carrot.png" id="1_6cf5c"]
 [ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_f24gc"]
+[ext_resource type="Texture2D" uid="uid://dkgrxpwp1gt15" path="res://Assets/sprites/Carrot V2.png" id="2_k7n1v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b88x"]
-atlas = ExtResource("1_6cf5c")
+[sub_resource type="AtlasTexture" id="AtlasTexture_18dpl"]
+atlas = ExtResource("2_k7n1v")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjspt"]
-atlas = ExtResource("1_6cf5c")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ulru"]
+atlas = ExtResource("2_k7n1v")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dmb8c"]
-atlas = ExtResource("1_6cf5c")
+[sub_resource type="AtlasTexture" id="AtlasTexture_07x63"]
+atlas = ExtResource("2_k7n1v")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_matjm"]
-atlas = ExtResource("1_6cf5c")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kym0h"]
+atlas = ExtResource("2_k7n1v")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p2duf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3b88x")
+"texture": SubResource("AtlasTexture_18dpl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjspt")
+"texture": SubResource("AtlasTexture_2ulru")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dmb8c")
+"texture": SubResource("AtlasTexture_07x63")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_matjm")
+"texture": SubResource("AtlasTexture_kym0h")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w4ix2"]
@@ -47,9 +47,10 @@ collision_mask = 2
 script = ExtResource("1_f24gc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_p2duf")
 autoplay = "default"
-frame_progress = 0.230445
+frame_progress = 0.54323
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w4ix2")

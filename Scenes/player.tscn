@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxhvbyl3qhryq"]
+[gd_scene load_steps=17 format=3 uid="uid://dxhvbyl3qhryq"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bw7t3"]
 [ext_resource type="Script" path="res://Scripts/Jump script.gd" id="2_ngtm5"]
 [ext_resource type="Texture2D" uid="uid://cpfnqgtkld4qe" path="res://Assets/sprites/Bnny_v2.png" id="2_xtkec"]
+[ext_resource type="Texture2D" uid="uid://ciex8uohtq436" path="res://Assets/sprites/zero two jump.png" id="3_mecbx"]
+[ext_resource type="Texture2D" uid="uid://1s8ioq0kw5fw" path="res://Assets/sprites/bnny slide.png" id="4_xvmw2"]
+[ext_resource type="Texture2D" uid="uid://0ovqw014qoeh" path="res://Assets/sprites/bnny wallJ.png" id="5_qnw6o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3k7yc"]
-atlas = ExtResource("2_xtkec")
-region = Rect2(32, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd0bo"]
+atlas = ExtResource("3_mecbx")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_soluy"]
 atlas = ExtResource("2_xtkec")
@@ -28,15 +31,19 @@ region = Rect2(16, 16, 16, 16)
 atlas = ExtResource("2_xtkec")
 region = Rect2(32, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5u4jk"]
-atlas = ExtResource("2_xtkec")
-region = Rect2(32, 18, 16, 10)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtul5"]
+atlas = ExtResource("4_xvmw2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c4bj"]
+atlas = ExtResource("5_qnw6o")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_62eyj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3k7yc")
+"texture": SubResource("AtlasTexture_nd0bo")
 }],
 "loop": true,
 "name": &"airborne",
@@ -69,10 +76,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5u4jk")
+"texture": SubResource("AtlasTexture_dtul5")
 }],
 "loop": true,
 "name": &"slide",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c4bj")
+}],
+"loop": true,
+"name": &"wall_slide",
 "speed": 1.0
 }]
 
@@ -95,12 +110,19 @@ jump_d = 0.5
 wait_time = 0.1
 one_shot = true
 
+[node name="buffer_timer" type="Timer" parent="timers"]
+wait_time = 0.1
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_62eyj")
-animation = &"slide"
+animation = &"airborne"
 autoplay = "idle"
-frame_progress = 0.171675
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_66uvc")
+
+[node name="wallCollider" type="RayCast2D" parent="."]
+position = Vector2(0, 1)
+target_position = Vector2(7, 0)
