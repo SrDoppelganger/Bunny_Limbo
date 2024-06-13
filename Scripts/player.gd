@@ -11,7 +11,7 @@ const ACC = 1.0
 @onready var jump_buffer_timer = $timers/buffer_timer
 @onready var wall_collider = $wallCollider
 
-var wall_jump = 3
+var wall_jump = 4
 var can_jump = false
 var can_wall_jump = false
 
@@ -20,6 +20,10 @@ const WALL_JUMP_PUSHBACK = 250.0
 #slide variables
 var facing_direction = 1
 var slamming = false
+
+#dash variables
+var dashing = false
+const DASH_SPEED = 500.0
 
 #coyote time variables
 @onready var coyote_timer = $timers/Coyote_timer
@@ -43,11 +47,11 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# Var direction stores a value between -1,0 and 1
 	var direction = Input.get_axis("move_left", "move_right")
-	if direction and !Input.is_action_pressed("slide"):
+	if direction and !Input.is_action_pressed("slide") and !dashing:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 64.0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
+	
 	#declare was_on_floor for coyote time
 	var was_on_floor = is_on_floor()
 		
@@ -56,7 +60,7 @@ func _physics_process(delta):
 		jump_buffer_timer.start()
 	if is_on_floor() and !jump_buffer_timer.is_stopped():
 		can_jump = true
-	if !is_on_floor() and wall_collider.is_colliding():
+	if !is_on_floor() and wall_collider.is_colliding() and !jump_buffer_timer.is_stopped():
 		can_wall_jump = true
 	else:
 		can_wall_jump = false
@@ -70,7 +74,7 @@ func _physics_process(delta):
 	#handle wall slide
 	wall_collider.scale.x = facing_direction
 	if direction != 0 and wall_collider.is_colliding() and !is_on_floor():
-		velocity.y = jump_script.get_gravity(velocity) * delta
+		velocity.y = 40
 		animation.play("wall_slide")
 		
 	#handle wall jump 
@@ -90,7 +94,16 @@ func _physics_process(delta):
 	if Input.is_action_pressed("slide") and !slamming:
 		animation.play("slide")
 		velocity.x = lerp(SLIDE_SPEED * facing_direction, 0.0,0.2)
-
+		
+	#handle dashing
+	if Input.is_action_just_pressed("dash"):
+		dashing = true
+	else:
+		dashing = false
+		
+	if dashing:
+		velocity.x = lerp(DASH_SPEED * facing_direction, 0.0,0.2)
+		
 	#handle animations and facing direction
 	if Input.is_action_just_pressed("move_right"):
 		animation.flip_h = false
@@ -104,6 +117,7 @@ func _physics_process(delta):
 		wall_jump = 3
 		jump_buffer_timer.stop()
 		slamming = false
+		
 		
 	move_and_slide()
 	

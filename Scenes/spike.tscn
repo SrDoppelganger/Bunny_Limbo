@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwr1xfi3ikadb"]
+
+[ext_resource type="PackedScene" uid="uid://wdmb650s6yld" path="res://Scenes/killzone.tscn" id="1_p8g8n"]
+[ext_resource type="Texture2D" uid="uid://yulij0m0tifm" path="res://Assets/sprites/new hazards.png" id="2_yy8re"]
+
+[node name="Spike" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Killzone" parent="." instance=ExtResource("1_p8g8n")]
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Killzone"]
+texture = ExtResource("2_yy8re")
+hframes = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Killzone"]
+position = Vector2(8.52651e-14, -1)
+scale = Vector2(0.625, 0.833333)
+polygon = PackedVector2Array(-10, 10, 10, 10, 0, -5)

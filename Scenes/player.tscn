@@ -95,14 +95,15 @@ animations = [{
 radius = 4.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_bw7t3")
 
 [node name="Jump script" type="Node" parent="."]
 script = ExtResource("2_ngtm5")
-jump_h = 80.0
+jump_h = 60.0
 jump_peak = 0.4
-jump_d = 0.5
+jump_d = 0.4
 
 [node name="timers" type="Node" parent="."]
 
@@ -112,6 +113,9 @@ one_shot = true
 
 [node name="buffer_timer" type="Timer" parent="timers"]
 wait_time = 0.1
+one_shot = true
+
+[node name="stamina_timer" type="Timer" parent="timers"]
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
