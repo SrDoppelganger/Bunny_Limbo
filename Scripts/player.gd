@@ -22,8 +22,9 @@ var facing_direction = 1
 var slamming = false
 
 #dash variables
-var dashing = false
-const DASH_SPEED = 500.0
+var dash_direction = Vector2(1,0)
+var canDash = false
+var isDashing = false
 
 #coyote time variables
 @onready var coyote_timer = $timers/Coyote_timer
@@ -36,6 +37,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 	
 
 func _physics_process(delta):
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += jump_script.get_gravity(velocity) * delta
@@ -47,7 +49,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# Var direction stores a value between -1,0 and 1
 	var direction = Input.get_axis("move_left", "move_right")
-	if direction and !Input.is_action_pressed("slide") and !dashing:
+	if direction and !Input.is_action_pressed("slide") and !isDashing:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 64.0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -95,14 +97,22 @@ func _physics_process(delta):
 		animation.play("slide")
 		velocity.x = lerp(SLIDE_SPEED * facing_direction, 0.0,0.2)
 		
-	#handle dashing
-	if Input.is_action_just_pressed("dash"):
-		dashing = true
-	else:
-		dashing = false
+	#handle dash:
+	#gets the facing direction to assign a direction to the dash
+	dash_direction = Vector2(facing_direction,0)
+	
+	if Input.is_action_just_pressed("dash") and canDash:
+		velocity = dash_direction.normalized() * 1600.0
+		canDash = false
+		isDashing = true
 		
-	if dashing:
-		velocity.x = lerp(DASH_SPEED * facing_direction, 0.0,0.2)
+		#sets dash time
+		await(get_tree().create_timer(0.2).timeout) 
+		isDashing = false
+	if isDashing:
+		set_collision_layer_value(2, false)
+	else:
+		set_collision_layer_value(2,true)
 		
 	#handle animations and facing direction
 	if Input.is_action_just_pressed("move_right"):
@@ -117,6 +127,7 @@ func _physics_process(delta):
 		wall_jump = 3
 		jump_buffer_timer.stop()
 		slamming = false
+		canDash = true
 		
 		
 	move_and_slide()

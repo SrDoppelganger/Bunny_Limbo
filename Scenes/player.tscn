@@ -95,8 +95,8 @@ animations = [{
 radius = 4.0
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
-collision_layer = 2
+z_index = 4
+collision_layer = 3
 script = ExtResource("1_bw7t3")
 
 [node name="Jump script" type="Node" parent="."]

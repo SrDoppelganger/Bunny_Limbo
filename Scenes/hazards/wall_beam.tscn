@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxcjjmv1s8awx"]
+
+[ext_resource type="Texture2D" uid="uid://p4xx5mc5lynu" path="res://Assets/sprites/Hazards V3.png" id="1_672am"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71dcf"]
+atlas = ExtResource("1_672am")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl125"]
+atlas = ExtResource("1_672am")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajwj2"]
+atlas = ExtResource("1_672am")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udicy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71dcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl125")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajwj2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lywbw"]
+size = Vector2(10, 10)
+
+[node name="wall_beam" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+sprite_frames = SubResource("SpriteFrames_udicy")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_lywbw")

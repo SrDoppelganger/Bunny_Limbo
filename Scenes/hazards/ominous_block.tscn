@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dex3dnb4fxu2a"]
+
+[ext_resource type="Texture2D" uid="uid://p4xx5mc5lynu" path="res://Assets/sprites/Hazards V3.png" id="1_bpfwe"]
+[ext_resource type="Script" path="res://Scripts/ominous_block.gd" id="1_o2ndx"]
+[ext_resource type="PackedScene" uid="uid://wdmb650s6yld" path="res://Scenes/hazards/killzone.tscn" id="2_tfjrq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lb4g6"]
+size = Vector2(10, 10)
+
+[node name="ominous_block" type="Node2D"]
+script = ExtResource("1_o2ndx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bpfwe")
+region_enabled = true
+region_rect = Rect2(2, 2, 12, 12)
+
+[node name="Killzone" parent="." instance=ExtResource("2_tfjrq")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("RectangleShape2D_lb4g6")
+
+[node name="LowerRayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 11)
+
+[node name="UpperRayCast2D" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(9.61651e-07, 11)
